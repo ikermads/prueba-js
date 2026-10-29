@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Análisis táctico, composiciones y zonas clave de mapas de VALORANT en Valompositions." />
+    <title>Análisis de mapa | Valompositions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <script src="mapa.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="container topbar-inner">
+          <a href="index.html" class="brand" aria-label="Valompositions inicio">
+            <span class="brand-mark">V</span>
+            <span class="brand-text">Valompositions</span>
+          </a>
+          <nav class="main-nav" aria-label="Navegación principal">
+            <a href="index.html#agents">Agentes</a>
+            <a href="index.html#compositions">Composiciones</a>
+            <a href="index.html#maps">Mapas</a>
+            <a href="index.html#pricing">Premium</a>
+          </nav>
+          <div class="nav-actions">
+            <a href="index.html#maps" class="btn btn-primary">Todos los mapas</a>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="map-detail-hero">
+          <img class="map-detail-background" id="mapBackground" alt="" aria-hidden="true" />
+          <div class="map-detail-overlay" aria-hidden="true"></div>
+          <div class="container">
+            <a class="text-link" href="index.html#maps">← Volver a mapas</a>
+            <div class="map-detail-meta" id="mapMeta"></div>
+            <h1 id="mapTitle">Análisis táctico</h1>
+            <p id="mapOverview"></p>
+          </div>
+        </section>
+
+        <div class="map-detail-page" id="mapDetail" hidden>
+          <section class="map-detail-section">
+            <div class="container map-detail-grid">
+              <article class="map-analysis-panel">
+                <span class="eyebrow">Lectura de ronda</span>
+                <h2>Ritmo recomendado</h2>
+                <p id="mapTempo"></p>
+              </article>
+              <article class="map-analysis-panel">
+                <span class="eyebrow">Zonas prioritarias</span>
+                <h2>Espacios que decidir</h2>
+                <div class="map-area-list" id="mapAreas"></div>
+              </article>
+              <article class="map-analysis-panel">
+                <span class="eyebrow">Lado atacante</span>
+                <h2>Plan de ataque</h2>
+                <p id="mapAttack"></p>
+              </article>
+              <article class="map-analysis-panel">
+                <span class="eyebrow">Lado defensor</span>
+                <h2>Plan de defensa</h2>
+                <p id="mapDefense"></p>
+              </article>
+              <article class="map-analysis-panel">
+                <span class="eyebrow">Partida individual</span>
+                <h2>Solo queue</h2>
+                <p id="mapSolo"></p>
+              </article>
+              <article class="map-analysis-panel">
+                <span class="eyebrow">Equipo coordinado</span>
+                <h2>Premade</h2>
+                <p id="mapPremade"></p>
+              </article>
+              <article class="map-analysis-panel">
+                <span class="eyebrow">Error frecuente</span>
+                <h2>Qué evitar</h2>
+                <p id="mapMistake"></p>
+              </article>
+            </div>
+          </section>
+
+          <section class="map-detail-section">
+            <div class="container">
+              <div class="section-head">
+                <div>
+                  <span class="eyebrow">Selección táctica</span>
+                  <h2>Composiciones para <span id="mapHeading"></span></h2>
+                </div>
+              </div>
+              <div class="search-wrap map-team-search">
+                <input id="mapTeamSearch" type="search" placeholder="Filtrar por equipo VCT" aria-label="Filtrar composiciones por equipo VCT" aria-controls="mapCompositions" />
+              </div>
+              <p class="composition-source-note">Las seis alineaciones más repetidas en este mapa en VCT Champions 2026; los equipos que comparten quinteto aparecen agrupados.</p>
+              <div class="map-compositions" id="mapCompositions"></div>
+              <p class="composition-empty-state" id="mapCompositionEmpty" aria-live="polite" hidden>No hay composiciones para ese equipo en este mapa.</p>
+              <section class="composition-detail" id="compositionDetail" aria-live="polite" aria-labelledby="compositionDetailTitle" tabindex="-1" hidden>
+                <header class="composition-detail-header">
+                  <div>
+                    <span class="eyebrow">Plan de composición</span>
+                    <h3 id="compositionDetailTitle"></h3>
+                    <p id="compositionDetailSummary"></p>
+                    <p class="composition-detail-usage" id="compositionDetailUsage"></p>
+                  </div>
+                  <button class="composition-detail-close" id="compositionDetailClose" type="button" aria-label="Cerrar análisis">×</button>
+                </header>
+                <div class="composition-guide-grid">
+                  <article>
+                    <span>Plan de juego</span>
+                    <p id="compositionPlan"></p>
+                  </article>
+                  <article>
+                    <span>Ataque</span>
+                    <p id="compositionAttack"></p>
+                  </article>
+                  <article>
+                    <span>Defensa</span>
+                    <p id="compositionDefense"></p>
+                  </article>
+                  <article>
+                    <span>Juega alrededor de</span>
+                    <p id="compositionFocus"></p>
+                  </article>
+                </div>
+                <div class="composition-roster-heading">
+                  <span class="eyebrow">Quinteto</span>
+                  <h4>Rol y ejecución por agente</h4>
+                </div>
+                <div class="composition-roster" id="compositionRoster"></div>
+              </section>
+            </div>
+          </section>
+        </div>
+
+        <section class="map-not-found" id="mapNotFound" hidden>
+          <div class="container">
+            <h1>Mapa no encontrado</h1>
+            <p>El enlace no corresponde a un mapa disponible.</p>
+            <a href="index.html#maps" class="btn btn-primary">Volver a mapas</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <a href="index.html" class="brand" aria-label="Valompositions inicio">
+            <span class="brand-mark">V</span>
+            <span class="brand-text">Valompositions</span>
+          </a>
+          <div class="footer-links">
+            <a href="index.html#agents">Agentes</a>
+            <a href="index.html#compositions">Composiciones</a>
+            <a href="index.html#maps">Mapas</a>
+          </div>
+          <div class="footer-meta"><span>© 2026 Valompositions</span></div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
